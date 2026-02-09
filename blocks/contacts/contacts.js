@@ -27,11 +27,11 @@ export default function decorate(block) {
       const titleText = titleCell ? titleCell.textContent.trim() : '';
       const locationText = locationCell ? locationCell.textContent.trim() : '';
 
-      const combined = locationText
+      const combinedText = locationText
         ? `${titleText}, ${locationText}`
         : titleText;
 
-      titleEl.textContent = combined;
+      titleEl.textContent = combinedText;
       contact.append(titleEl);
     }
 
