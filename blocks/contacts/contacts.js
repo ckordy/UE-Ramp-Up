@@ -1,12 +1,10 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // Parent wrapper
-  console.log("Decorating contacts block", block);
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('contacts');
+  // Use the block itself as the grid container
+  block.classList.add('contacts');
+  const contacts = [];
 
-  // Iterate each row (one contact per row)
   [...block.children].forEach((row) => {
     const contact = document.createElement('div');
     contact.classList.add('contact');
@@ -15,12 +13,9 @@ export default function decorate(block) {
 
     const [nameCell, titleCell, locationCell, emailCell] = [...row.children];
 
-    console.log("nameCell", nameCell);
-
     if (nameCell) {
       const nameEl = document.createElement('div');
       nameEl.classList.add('contact-name');
-      // this <p> will have data-aue-prop="name"
       nameEl.append(...nameCell.childNodes);
       contact.append(nameEl);
     }
@@ -46,8 +41,8 @@ export default function decorate(block) {
       contact.append(emailEl);
     }
 
-    wrapper.append(contact);
+    contacts.push(contact);
   });
 
-  block.replaceChildren(wrapper);
+  block.replaceChildren(...contacts);
 }
