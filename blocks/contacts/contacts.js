@@ -15,9 +15,12 @@ export default function decorate(block) {
 
     const [nameCell, titleCell, locationCell, emailCell] = [...row.children];
 
+    console.log("nameCell", nameCell);
+
     if (nameCell) {
       const nameEl = document.createElement('div');
       nameEl.classList.add('contact-name');
+      // this <p> will have data-aue-prop="name"
       nameEl.append(...nameCell.childNodes);
       contact.append(nameEl);
     }
