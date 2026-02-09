@@ -1,4 +1,4 @@
-/* Container strip */
+/* Outer strip */
 .promo.block {
   max-width: 800px;
   margin: 80px auto;
@@ -24,7 +24,7 @@
 .promo-subheadline {
   margin: 0;
   font-size: 16px;
-  color: #555;
+  color: #555555;
 }
 
 /* CTA wrapper */
@@ -43,20 +43,13 @@
   border: none;
   cursor: pointer;
 
-  --tw-bg-opacity: 1;
   background-color: rgb(255 142 47 / 1);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
 }
 
-.promo-button:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 142 47 / 0);
-  filter: brightness(0.95);
-}
-
-/* Icon square */
+/* Icon box */
 .promo-icon {
   width: 22px;
   height: 16px;
@@ -75,7 +68,7 @@
 
 /* Hover */
 .promo-button:hover {
-  background-color: #e6830d;
+  filter: brightness(0.95);
 }
 
 /* Mobile tweaks */
@@ -94,7 +87,6 @@
   }
 
   .promo-button {
-    width: auto;
     padding-inline: 24px;
   }
 }

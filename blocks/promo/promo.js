@@ -1,25 +1,21 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  console.log('PROMO DECORATE', block);
-
   block.classList.add('promo');
 
-  const [row] = [...block.children];
-  
-  console.log('PROMO ROW CHILDREN', [...row.children]);
-  if (!row) {
-    console.warn('PROMO: no row found');
-    return;
-  }
+  // Keep UE instrumentation on the block, discard raw children
+  const cells = [...block.children];
+  if (!cells.length) return;
 
-  moveInstrumentation(row, block);
+  moveInstrumentation(block, block);
 
-  const cells = [...row.children];
-  const headlineCell   = cells[0];
-  const subCell        = cells[1];
-  const ctaCell        = cells[2];
-  const iconCell       = cells[3];
+  const findCell = (prop) =>
+    cells.find((c) => c.querySelector(`[data-aue-prop="${prop}"]`)) || null;
+
+  const headlineCell = findCell('headline');
+  const subCell      = findCell('subheadline');
+  const ctaCell      = findCell('ctaText');
+  const iconCell     = findCell('ctaIcon');
 
   const wrapper = document.createElement('div');
   wrapper.classList.add('promo-inner');
@@ -28,77 +24,66 @@ export default function decorate(block) {
   text.classList.add('promo-text');
 
   // Headline
-  if (headlineCell && headlineCell.textContent.trim()) {
-    const h = document.createElement('h2');
-    h.classList.add('promo-headline');
-
+  if (headlineCell) {
     const p = headlineCell.querySelector('p');
-    if (p) {
-      // Move the text nodes out of the <p> so we don't nest <p> in <h2>
-      h.append(...p.childNodes);
-    } else {
-      h.append(...headlineCell.childNodes);
+    const value = p ? p.textContent.trim() : headlineCell.textContent.trim();
+    if (value) {
+      const h = document.createElement('h2');
+      h.classList.add('promo-headline');
+      h.textContent = value;
+      text.append(h);
     }
-
-    text.append(h);
   }
 
   // Sub-headline
-  if (subCell && subCell.textContent.trim()) {
-    const sub = document.createElement('p');
-    sub.classList.add('promo-subheadline');
-
+  if (subCell) {
     const p = subCell.querySelector('p');
-    if (p) {
-      sub.append(...p.childNodes);
-    } else {
-      sub.append(...subCell.childNodes);
+    const value = p ? p.textContent.trim() : subCell.textContent.trim();
+    if (value) {
+      const sub = document.createElement('p');
+      sub.classList.add('promo-subheadline');
+      sub.textContent = value;
+      text.append(sub);
     }
-
-    text.append(sub);
   }
 
   wrapper.append(text);
 
-  // CTA (button) – only if CTA text exists
-  if (ctaCell && ctaCell.textContent.trim()) {
-    const ctaWrapper = document.createElement('div');
-    ctaWrapper.classList.add('promo-cta');
-
-    const button = document.createElement('button');
-    button.classList.add('promo-button');
-    button.type = 'button';
-
-    // Optional icon text
-    let iconText = '';
-    if (iconCell && iconCell.textContent.trim()) {
-      const p = iconCell.querySelector('p');
-      iconText = p ? p.textContent.trim() : iconCell.textContent.trim();
-    }
-
-    if (iconText) {
-      const icon = document.createElement('span');
-      icon.classList.add('promo-icon');
-      icon.setAttribute('aria-hidden', 'true');
-      icon.textContent = iconText;
-      button.append(icon);
-    }
-
-    const label = document.createElement('span');
-    label.classList.add('promo-button-label');
-
+  // CTA
+  if (ctaCell) {
     const p = ctaCell.querySelector('p');
-    if (p) {
-      label.append(...p.childNodes);
-    } else {
-      label.append(...ctaCell.childNodes);
-    }
+    const ctaValue = p ? p.textContent.trim() : ctaCell.textContent.trim();
 
-    button.append(label);
-    ctaWrapper.append(button);
-    wrapper.append(ctaWrapper);
+    if (ctaValue) {
+      const ctaWrapper = document.createElement('div');
+      ctaWrapper.classList.add('promo-cta');
+
+      const button = document.createElement('button');
+      button.classList.add('promo-button');
+      button.type = 'button';
+
+      // Icon
+      if (iconCell) {
+        const ip = iconCell.querySelector('p');
+        const iconValue = ip ? ip.textContent.trim() : iconCell.textContent.trim();
+        if (iconValue) {
+          const icon = document.createElement('span');
+          icon.classList.add('promo-icon');
+          icon.setAttribute('aria-hidden', 'true');
+          icon.textContent = iconValue; // ✉ in your example
+          button.append(icon);
+        }
+      }
+
+      const label = document.createElement('span');
+      label.classList.add('promo-button-label');
+      label.textContent = ctaValue;
+      button.append(label);
+
+      ctaWrapper.append(button);
+      wrapper.append(ctaWrapper);
+    }
   }
 
-  // Replace original row with our structured content
   block.replaceChildren(wrapper);
 }
