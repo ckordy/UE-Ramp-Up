@@ -3,14 +3,13 @@
 }
 
 .contacts.block {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 80px 24px;
-
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 120px;
-  row-gap: 72px;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0;
+    row-gap: 2.5rem;
 }
 
 .contact {

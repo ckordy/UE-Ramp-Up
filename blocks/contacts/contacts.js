@@ -27,19 +27,20 @@ export default function decorate(block) {
       contact.append(titleEl);
     }
 
-    if (locationCell && locationCell.textContent.trim()) {
-      const locationEl = document.createElement('div');
-      locationEl.classList.add('contact-location');
-      locationEl.append(...locationCell.childNodes);
-      contact.append(locationEl);
-    }
+  if (titleCell || (locationCell && locationCell.textContent.trim())) {
+    const titleEl = document.createElement('div');
+    titleEl.classList.add('contact-title');
 
-    if (emailCell) {
-      const emailEl = document.createElement('div');
-      emailEl.classList.add('contact-email');
-      emailEl.append(...emailCell.childNodes);
-      contact.append(emailEl);
-    }
+    const titleText = titleCell ? titleCell.textContent.trim() : '';
+    const locationText = locationCell ? locationCell.textContent.trim() : '';
+
+    const combined = locationText
+      ? `${titleText}, ${locationText}`
+      : titleText;
+
+    titleEl.textContent = combined;
+    contact.append(titleEl);
+  }
 
     contacts.push(contact);
   });
