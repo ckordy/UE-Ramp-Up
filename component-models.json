@@ -220,8 +220,8 @@
     "fields": [
       {
         "component": "text",
-        "name": "name",
-        "label": "Name",
+        "name": "contactName",
+        "label": "Contact Name",
         "valueType": "string"
       },
       {
