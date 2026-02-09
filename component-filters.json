@@ -20,6 +20,12 @@
     ]
   },
   {
+    "id": "contacts",
+    "components": [
+      "contact" 
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
