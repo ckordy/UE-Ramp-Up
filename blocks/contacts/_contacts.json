@@ -31,38 +31,6 @@
       }
     }
   ],
-  "models": [
-    {
-      "id": "contact",
-      "fields": [
-        {
-          "component": "text",
-          "name": "name",
-          "label": "Name",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "title",
-          "label": "Title",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "location",
-          "label": "Location",
-          "valueType": "string",
-          "required": false
-        },
-        {
-          "component": "text",
-          "name": "email",
-          "label": "Email",
-          "valueType": "string"
-        }
-      ]
-    }
-  ],
   "filters": [
     {
       "id": "contacts",
