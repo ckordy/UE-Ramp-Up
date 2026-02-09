@@ -2,11 +2,12 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   console.log('PROMO DECORATE', block);
-  console.log('PROMO ROW CHILDREN', [...row.children]);
 
   block.classList.add('promo');
 
   const [row] = [...block.children];
+  
+  console.log('PROMO ROW CHILDREN', [...row.children]);
   if (!row) {
     console.warn('PROMO: no row found');
     return;
