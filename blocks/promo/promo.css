@@ -43,11 +43,17 @@
   border: none;
   cursor: pointer;
 
-  background-color: #f7931d; /* orange */
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 142 47 / 1);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
-  text-transform: none;
+}
+
+.promo-button:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 142 47 / 0);
+  filter: brightness(0.95);
 }
 
 /* Icon square */
