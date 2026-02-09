@@ -2,7 +2,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // Use block itself as grid container
+  // Use the block itself as the grid container
   block.classList.add('locations');
 
   const items = [];
@@ -12,7 +12,7 @@ export default function decorate(block) {
     item.classList.add('location');
     moveInstrumentation(row, item);
 
-    // Expect cells in model order:
+    // Model order:
     // [primaryImage, secondaryImage, locationName, contactNumber,
     //  streetAddress, city, postalCode, country]
     const [
@@ -30,6 +30,7 @@ export default function decorate(block) {
     const images = document.createElement('div');
     images.classList.add('location-images');
 
+    // Primary image
     if (primaryImgCell) {
       const pic = primaryImgCell.querySelector('picture img');
       if (pic) {
@@ -41,6 +42,7 @@ export default function decorate(block) {
       }
     }
 
+    // Secondary image
     if (secondaryImgCell) {
       const pic = secondaryImgCell.querySelector('picture img');
       if (pic) {
@@ -52,12 +54,17 @@ export default function decorate(block) {
       }
     }
 
+    // Add count modifier class: location-images--1 or --2
+    const imageCount = images.querySelectorAll('picture').length;
+    images.classList.add(`location-images--${imageCount}`);
+
     item.append(images);
 
     // Content wrapper
     const content = document.createElement('div');
     content.classList.add('location-content');
 
+    // Location name
     if (nameCell) {
       const nameEl = document.createElement('h3');
       nameEl.classList.add('location-name');
@@ -65,6 +72,7 @@ export default function decorate(block) {
       content.append(nameEl);
     }
 
+    // Phone
     if (phoneCell && phoneCell.textContent.trim()) {
       const phoneEl = document.createElement('div');
       phoneEl.classList.add('location-phone');
@@ -72,7 +80,7 @@ export default function decorate(block) {
       content.append(phoneEl);
     }
 
-    // Address lines
+    // Address
     const address = document.createElement('div');
     address.classList.add('location-address');
 
