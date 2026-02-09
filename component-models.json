@@ -298,5 +298,34 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "promo",
+    "fields": [
+      {
+        "component": "text",
+        "name": "headline",
+        "label": "Headline",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "subheadline",
+        "label": "Sub-headline",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaIcon",
+        "label": "CTA Icon (optional)",
+        "valueType": "string"
+      }
+    ]
   }
 ]

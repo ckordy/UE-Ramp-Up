@@ -1,0 +1,94 @@
+/* Container strip */
+.promo.block {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 80px 24px 100px;
+  text-align: center;
+}
+
+/* Inner layout */
+.promo-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Text */
+.promo-headline {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.promo-subheadline {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* CTA wrapper */
+.promo-cta {
+  margin-top: 8px;
+}
+
+/* Button */
+.promo-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 32px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+
+  background-color: #f7931d; /* orange */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+/* Icon square */
+.promo-icon {
+  width: 22px;
+  height: 16px;
+  border-radius: 2px;
+  border: 2px solid #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* CTA label */
+.promo-button-label {
+  white-space: nowrap;
+}
+
+/* Hover */
+.promo-button:hover {
+  background-color: #e6830d;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .promo.block {
+    margin: 48px auto 64px;
+    padding: 56px 16px 72px;
+  }
+
+  .promo-headline {
+    font-size: 20px;
+  }
+
+  .promo-subheadline {
+    font-size: 14px;
+  }
+
+  .promo-button {
+    width: auto;
+    padding-inline: 24px;
+  }
+}
