@@ -243,5 +243,60 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "location",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "primaryImage",
+        "label": "Primary Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "secondaryImage",
+        "label": "Secondary Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "locationName",
+        "label": "Location Name",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "contactNumber",
+        "label": "Contact Number",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "streetAddress",
+        "label": "Street Address",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "city",
+        "label": "City",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "postalCode",
+        "label": "Postal Code",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "country",
+        "label": "Country",
+        "valueType": "string"
+      }
+    ]
   }
 ]

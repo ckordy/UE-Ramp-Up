@@ -16,13 +16,20 @@
       "cards",
       "columns",
       "fragment",
-      "contacts"
+      "contacts",
+      "locations"
     ]
   },
   {
     "id": "contacts",
     "components": [
       "contact" 
+    ]
+  },
+  {
+    "id": "locations",
+    "components": [
+      "location"
     ]
   },
   {
