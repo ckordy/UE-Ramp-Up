@@ -1,28 +1,25 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  console.log('PROMO DECORATE FROM FIELDS', block);
+  console.log('PROMO DECORATE SAFE', block);
 
   block.classList.add('promo');
 
-  const cells = [...block.children];
-  if (!cells.length) return;
+  // Snapshot raw content before we replace it
+  const root = block.cloneNode(true);
 
-  moveInstrumentation(block, block);
-
-  const findCell = (prop) =>
-    cells.find((c) => c.querySelector(`[data-aue-prop="${prop}"]`)) || null;
-
-  const getValue = (cell) => {
-    if (!cell) return '';
-    const p = cell.querySelector('p');
-    return (p ? p.textContent : cell.textContent).trim();
+  const getProp = (prop) => {
+    const el = root.querySelector(`[data-aue-prop="${prop}"]`);
+    return el ? el.textContent.trim() : '';
   };
 
-  const headline    = getValue(findCell('headline'));
-  const subheadline = getValue(findCell('subheadline'));
-  const ctaText     = getValue(findCell('ctaText'));
-  const ctaIcon     = getValue(findCell('ctaIcon'));
+  const headline    = getProp('headline');
+  const subheadline = getProp('subheadline');
+  const ctaText     = getProp('ctaText');
+  const ctaIcon     = getProp('ctaIcon');
+
+  // Move instrumentation once, then rebuild DOM
+  moveInstrumentation(root, block);
 
   const wrapper = document.createElement('div');
   wrapper.classList.add('promo-inner');
@@ -58,7 +55,7 @@ export default function decorate(block) {
       const icon = document.createElement('span');
       icon.classList.add('promo-icon');
       icon.setAttribute('aria-hidden', 'true');
-      icon.textContent = ctaIcon; // e.g. ✉
+      icon.textContent = ctaIcon;
       button.append(icon);
     }
 
