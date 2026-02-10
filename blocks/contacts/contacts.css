@@ -1,5 +1,8 @@
-.contacts.block {
+.contacts-wrapper {
     background-color: #f4f7f8;
+}
+
+.contacts.block {
     max-width: 650px;
     margin: 0 auto;
     padding: 80px 24px;
