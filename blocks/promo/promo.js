@@ -1,8 +1,6 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  console.log('PROMO DECORATE SAFE', block);
-
   block.classList.add('promo');
 
   // Snapshot raw content before we replace it
